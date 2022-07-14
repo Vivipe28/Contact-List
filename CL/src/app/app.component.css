@@ -1,0 +1,30 @@
+.title{
+    padding: 1rem 2rem;
+    background-color: #fffbfc;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #9796f0;
+    box-shadow:rgb(137, 129, 129) 3px 3px  5px;;
+}
+
+.contactContainer{
+    background-color: #fffbfc; 
+    padding: 0.5rem;
+    margin:0.2%;
+    margin-left: 2%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: grid;
+    grid-template-columns:0.5fr 1fr 1fr 2fr 1fr 2fr;
+    width: 60%;
+    text-align: left;
+}
+
+h3{
+    margin: 2%;
+}
+
+.form{
+    background-color: #fffbfc; 
+    padding: 1rem;
+    width: 60%;
+    margin: 2%;
+}
