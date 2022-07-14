@@ -1,43 +1,53 @@
-<h1 class="title">Mi Agenda</h1>
+<body>
+  <h1 class="title">Mi Agenda</h1>
 
-<div class="container">
-<div class="row">
-  <h3>Mi lista de contactos</h3>
-  <ul class="listContac">
-    <li class="contactContainer" *ngFor="let contact of contactArray" (click)="clickEdit(contact)">
-      <span>{{contact.id}}</span>
-      <span>{{contact.name}}</span>
-      <span>{{contact.phone}}</span>
-      <span>{{contact.birthdate}}</span>
-      <span>{{contact.address}}</span>
-      <span>{{contact.mail}}</span>
-    </li>
-  </ul>
-</div>
+  <div class="container">
 
-<div class="form">
-  <h3>Ingresa los datos</h3>
-  <div class="formGroup">
-    <input type="text" placeholder="Nombre" class="form-control" [(ngModel)]="selectedContact.name">
-  </div>
-  <div class="formGroup">
-    <input type="text" placeholder="Número" class="form-control" [(ngModel)]="selectedContact.phone">
-  </div>
-  <div class="formGroup">
-    <input type="date" class="form-control" [(ngModel)]="selectedContact.birthdate">
-  </div>
-  <div class="formGroup">
-    <input type="text" placeholder="Dirección" class="form-control" [(ngModel)]="selectedContact.address">
-  </div>
-  <div class="formGroup">
-    <input type="email" placeholder="Email" class="form-control" [(ngModel)]="selectedContact.mail">
-  </div>
-  <button (click)="saveOrEdit()">Agregar</button>
-  <button *ngIf="selectedContact.id !== 0" (click)="delete()">Eliminar</button>
-</div>
+    <div class="form">
+      <h3>Si deseas agregar contactos, ingresa los datos</h3>
+      <div class="formGroup">
+        <input #name type="text" placeholder="Nombre" class="form-control" [(ngModel)]="selectedContact.name" >
+      </div>
+      <div class="formGroup">
+        <input type="text" placeholder="Número" class="form-control" [(ngModel)]="selectedContact.phone">
+      </div>
+      <div class="formGroup">
+        <input type="texto" class="form-control" [(ngModel)]="selectedContact.birthdate" placeholder="Fecha de nacimiento" onfocus="(this.type='date')">
+      </div>
+      <div class="formGroup">
+        <input type="text" placeholder="Dirección" class="form-control" [(ngModel)]="selectedContact.address">
+      </div>
+      <div class="formGroup">
+        <input type="email" placeholder="Email" class="form-control" [(ngModel)]="selectedContact.mail">
+      </div>
+      <button (click)="saveOrEdit()" class="saveButton">Guardar</button>
+    </div>
 
-</div>
+    <div class="row">
+      <div class="search">
+        <h3>Mi lista de contactos</h3>
+        <input #search type="text" class="form_control" placeholder="Buscar" name="filterContact" [(ngModel)]="filterContact"
+        >
+      </div>
+      <ul class="listContac">
+        <li class="contactContainer" *ngFor="let contact of contactArray | filter:filterContact">
+          <div class="infoContact">
+            <div><span class="info">Id </span> {{contact.id}}</div>
+            <div> <span class="info">Nombre </span>{{contact.name}}</div>
+            <div> <span class="info">Teléfono </span>{{contact.phone}}</div>
+            <div> <span class="info">Edad </span>{{age(contact.birthdate)}}</div>
+            <div><span class="info">Dirección </span>{{contact.address}}</div>
+            <div> <span class="info">Correo </span>{{contact.mail}}</div>
+          </div>
+          <div class="buttonContainer">
+            <button (click)="clickEdit(contact)"> <mat-icon class="icon">edit</mat-icon></button>
+            <button (click)="delete(contact)"><mat-icon class="icon">delete</mat-icon></button>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-
+  </div>
+</body>
 
 <router-outlet></router-outlet>
